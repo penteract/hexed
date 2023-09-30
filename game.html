@@ -25,18 +25,18 @@ path{
 .r2_-1,.l2_-1,.r1_1,.l1_1,.r-1_2,.l-1_2,.r-2_1,.l-2_1,.r-1_-1,.l-1_-1,.r1_-2,.l1_-2{
   stroke-width:1;
 }
-.l2_-1{stroke:url(#l2,-1);}
-.l1_1{stroke:url(#l1,1);}
-.l-1_2{stroke:url(#l-1,2);}
-.l-2_1{stroke:url(#l-2,1);}
-.l-1_-1{stroke:url(#l-1,-1);}
-.l1_-2{stroke:url(#l1,-2);}
-.r2_-1{stroke:url(#r2,-1);}
-.r1_1{stroke:url(#r1,1);}
-.r-1_2{stroke:url(#r-1,2);}
-.r-2_1{stroke:url(#r-2,1);}
-.r-1_-1{stroke:url(#r-1,-1);}
-.r1_-2{stroke:url(#r1,-2);}
+.l2_-1{stroke:url(#l2_-1);}
+.l1_1{stroke:url(#l1_1);}
+.l-1_2{stroke:url(#l-1_2);}
+.l-2_1{stroke:url(#l-2_1);}
+.l-1_-1{stroke:url(#l-1_-1);}
+.l1_-2{stroke:url(#l1_-2);}
+.r2_-1{stroke:url(#r2_-1);}
+.r1_1{stroke:url(#r1_1);}
+.r-1_2{stroke:url(#r-1_2);}
+.r-2_1{stroke:url(#r-2_1);}
+.r-1_-1{stroke:url(#r-1_-1);}
+.r1_-2{stroke:url(#r1_-2);}
 svg{
   position:fixed;
   width: 100%;
@@ -74,52 +74,52 @@ const dirs = [[2,-1],[1,1],[-1,2],[-2,1],[-1,-1],[1,-2]]
   <stop offset="0%" stop-color="rgba(128,128,255,1)" />
   <stop offset="100%" stop-color="rgba(128,128,255,0)" />
 </radialGradient>
-<linearGradient id="l1,1" x1=0 x2=1 y1=0 y2=1>
+<linearGradient id="l1_1" x1=0 x2=1 y1=0 y2=1>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="blue" />
 </linearGradient>
-<linearGradient id="l-2,1" x1=1 x2=0 y1=0 y2=1>
+<linearGradient id="l-2_1" x1=1 x2=0 y1=0 y2=1>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="blue" />
 </linearGradient>
-<linearGradient id="l-1,2" x1=0 x2=0 y1=0 y2=1>
+<linearGradient id="l-1_2" x1=0 x2=0 y1=0 y2=1>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="blue" />
 </linearGradient>
-<linearGradient id="l-1,-1" x1=1 x2=0 y1=1 y2=0>
+<linearGradient id="l-1_-1" x1=1 x2=0 y1=1 y2=0>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="blue" />
 </linearGradient>
-<linearGradient id="l2,-1" x1=0 x2=1 y1=1 y2=0>
+<linearGradient id="l2_-1" x1=0 x2=1 y1=1 y2=0>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="blue" />
 </linearGradient>
-<linearGradient id="l1,-2" x1=1 x2=1 y1=1 y2=0>
+<linearGradient id="l1_-2" x1=1 x2=1 y1=1 y2=0>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="blue" />
 </linearGradient>
 
-<linearGradient id="r1,1" x1=0 x2=1 y1=0 y2=1>
+<linearGradient id="r1_1" x1=0 x2=1 y1=0 y2=1>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="red" />
 </linearGradient>
-<linearGradient id="r-2,1" x1=1 x2=0 y1=0 y2=1>
+<linearGradient id="r-2_1" x1=1 x2=0 y1=0 y2=1>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="red" />
 </linearGradient>
-<linearGradient id="r-1,2" x1=0 x2=0 y1=0 y2=1>
+<linearGradient id="r-1_2" x1=0 x2=0 y1=0 y2=1>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="red" />
 </linearGradient>
-<linearGradient id="r-1,-1" x1=1 x2=0 y1=1 y2=0>
+<linearGradient id="r-1_-1" x1=1 x2=0 y1=1 y2=0>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="red" />
 </linearGradient>
-<linearGradient id="r2,-1" x1=0 x2=1 y1=1 y2=0>
+<linearGradient id="r2_-1" x1=0 x2=1 y1=1 y2=0>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="red" />
 </linearGradient>
-<linearGradient id="r1,-2" x1=1 x2=1 y1=1 y2=0>
+<linearGradient id="r1_-2" x1=1 x2=1 y1=1 y2=0>
   <stop offset="0%" stop-color="magenta" />
   <stop offset="100%" stop-color="red" />
 </linearGradient>
@@ -154,7 +154,11 @@ for(i=-N;i<=N;i++) for(j=-N;j<=N;j++) if (Math.abs(i+j)<=N){
       v.setAttribute("cx", x)
       v.setAttribute("cy", y)
       v.setAttribute("r",unit/2)
-      v.pos=pos
+      //v.pos=pos
+      v.addEventListener("click",function(e){
+      console.log(pos)
+        console.log(move(turn, pos))
+      })
       svgel.appendChild(v);
       verts[pos] = v
     }
@@ -166,7 +170,7 @@ function mkPath(v1,v2){
   let [x1,y1] = toPos(v1)
   let [x2,y2] = toPos(v2)
   let e = document.createElementNS(SVGNS,"path")
-  e.setAttribute("d",`M ${x1} ${y1} L ${x2} ${y2}`)
+  e.setAttribute("d",`M ${x1} ${y1} L ${x2+0.00001} ${y2}`)// SVG bug in firefox with gradients and vertical lines
   svgel.insertBefore(e,midElement)
   return e
 }
@@ -199,9 +203,13 @@ let positions = {
 visited = {}
 visited[start]=true
 
-turn = "l"
+let turn = "l"
 
 move = function(player,direction){
+  if(!dirs.reduce((acc,d)=>(d==direction+"")||acc,false)){
+    return false;
+  }
+  if(turn!=player) {return false}
   let oldpos = positions[player]
   let newpos = vadd(oldpos,direction)
   console.log(newpos)
@@ -210,12 +218,14 @@ move = function(player,direction){
   }
   visited[newpos]=true
   mkPath(oldpos,newpos).classList.add(player+direction.join("_"))
+  console.log(player+direction.join("_"))
   positions[player]=newpos
+  turn = (turn=="l"?"r":"l")
   return newpos
 }
 
-console.log(move("r",[1,1]))
 console.log(move("l",[-2,1]))
+console.log(move("r",[1,1]))
 
 for(let d of dirs){
   s=".r"+d.join("_")
