@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hexed</title>
+<style>
+/*
+@media(orientation:portrait){
+  svg{
+  transform:rotate(-90deg);
+  }
+}*/
+circle{
+  stroke:none;
+  fill:rgba(1,1,1,0);
+}
+circle:hover{
+  stroke:none;
+  fill:url(#radGrad);
+}
+path{
+  stroke:black;
+  stroke-width:0.5;
+  stroke-linecap:round;
+}
+.r2_-1,.l2_-1,.r1_1,.l1_1,.r-1_2,.l-1_2,.r-2_1,.l-2_1,.r-1_-1,.l-1_-1,.r1_-2,.l1_-2{
+  stroke-width:1;
+}
+.l2_-1{stroke:url(#l2,-1);}
+.l1_1{stroke:url(#l1,1);}
+.l-1_2{stroke:url(#l-1,2);}
+.l-2_1{stroke:url(#l-2,1);}
+.l-1_-1{stroke:url(#l-1,-1);}
+.l1_-2{stroke:url(#l1,-2);}
+.r2_-1{stroke:url(#r2,-1);}
+.r1_1{stroke:url(#r1,1);}
+.r-1_2{stroke:url(#r-1,2);}
+.r-2_1{stroke:url(#r-2,1);}
+.r-1_-1{stroke:url(#r-1,-1);}
+.r1_-2{stroke:url(#r1,-2);}
+svg{
+  position:fixed;
+  width: 100%;
+  height: 100%;
+  padding:3px;
+  box-sizing:border-box;
+}
+
+*{
+border:0px;
+padding:0px;
+margin:0px;
+}
+</style>
+<script>
+"use strict";
+// General functions
+function vadd(v1,v2){
+  return [v1[0]+v2[0],v1[1]+v2[1]];
+}
+
+const SVGNS = "http://www.w3.org/2000/svg"
+
+// Hexagon stuff
+const hh = Math.sqrt(3)/2 // hex height
+const dirs = [[2,-1],[1,1],[-1,2],[-2,1],[-1,-1],[1,-2]]
+</script>
+</head>
+
+
+<body>
+<svg id=svgel viewbox="-50 -43.30125 100 86.6025" width=100% height=100% >
+<defs>
+<radialGradient id="radGrad">
+  <stop offset="0%" stop-color="rgba(128,128,255,1)" />
+  <stop offset="100%" stop-color="rgba(128,128,255,0)" />
+</radialGradient>
+<linearGradient id="l1,1" x1=0 x2=1 y1=0 y2=1>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="blue" />
+</linearGradient>
+<linearGradient id="l-2,1" x1=1 x2=0 y1=0 y2=1>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="blue" />
+</linearGradient>
+<linearGradient id="l-1,2" x1=0 x2=0 y1=0 y2=1>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="blue" />
+</linearGradient>
+<linearGradient id="l-1,-1" x1=1 x2=0 y1=1 y2=0>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="blue" />
+</linearGradient>
+<linearGradient id="l2,-1" x1=0 x2=1 y1=1 y2=0>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="blue" />
+</linearGradient>
+<linearGradient id="l1,-2" x1=1 x2=1 y1=1 y2=0>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="blue" />
+</linearGradient>
+
+<linearGradient id="r1,1" x1=0 x2=1 y1=0 y2=1>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="red" />
+</linearGradient>
+<linearGradient id="r-2,1" x1=1 x2=0 y1=0 y2=1>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="red" />
+</linearGradient>
+<linearGradient id="r-1,2" x1=0 x2=0 y1=0 y2=1>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="red" />
+</linearGradient>
+<linearGradient id="r-1,-1" x1=1 x2=0 y1=1 y2=0>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="red" />
+</linearGradient>
+<linearGradient id="r2,-1" x1=0 x2=1 y1=1 y2=0>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="red" />
+</linearGradient>
+<linearGradient id="r1,-2" x1=1 x2=1 y1=1 y2=0>
+  <stop offset="0%" stop-color="magenta" />
+  <stop offset="100%" stop-color="red" />
+</linearGradient>
+</defs>
+</svg>
+</body>
+
+<script>
+const reset = svgel.innerHTML
+let gv;
+let move;
+function startGame(N){
+svgel.innerHTML=reset
+const svgwidth = 100
+const svgheight = svgwidth*hh
+const maxvert = 1.5*N*2+2
+const unit = svgheight/(maxvert+1);
+function toPos([i,j]){
+  return [unit*(2*i+j)*hh/3, unit*j*1.5/3]
+}
+
+const verts = {}
+gv=verts
+let midElement= document.createElementNS(SVGNS,"g")
+svgel.appendChild(midElement);
+for(i=-N;i<=N;i++) for(j=-N;j<=N;j++) if (Math.abs(i+j)<=N){
+  for (let d of dirs){
+    let pos = vadd([i*3,j*3],d)
+    if (!(pos in verts)){
+      let v = document.createElementNS(SVGNS,"circle")
+      let [x,y] = toPos(pos)
+      v.setAttribute("cx", x)
+      v.setAttribute("cy", y)
+      v.setAttribute("r",unit/2)
+      v.pos=pos
+      svgel.appendChild(v);
+      verts[pos] = v
+    }
+  }
+}
+
+
+function mkPath(v1,v2){
+  let [x1,y1] = toPos(v1)
+  let [x2,y2] = toPos(v2)
+  let e = document.createElementNS(SVGNS,"path")
+  e.setAttribute("d",`M ${x1} ${y1} L ${x2} ${y2}`)
+  svgel.insertBefore(e,midElement)
+  return e
+}
+
+const edges = {}
+for (let v in verts){
+  v=v.split(",").map(x=>+x)
+  edges[v]={}
+  for(let d of dirs){
+    let n = vadd(v,d)
+    if(n in verts){
+      if (n in edges){
+        edges[v][n]=edges[n][v]
+      }
+      else{
+        let e = mkPath(v,n)
+        let [x1,y1] = toPos(v)
+        let [x2,y2] = toPos(n)
+        edges[v][n] = e
+      }
+    }
+  }
+}
+
+let start = [1,-2]
+let positions = {
+"l":start,
+"r":start
+}
+visited = {}
+visited[start]=true
+
+turn = "l"
+
+move = function(player,direction){
+  let oldpos = positions[player]
+  let newpos = vadd(oldpos,direction)
+  console.log(newpos)
+  if(!(newpos in verts) || (newpos in visited)) {
+    return false
+  }
+  visited[newpos]=true
+  mkPath(oldpos,newpos).classList.add(player+direction.join("_"))
+  positions[player]=newpos
+  return newpos
+}
+
+console.log(move("r",[1,1]))
+console.log(move("l",[-2,1]))
+
+for(let d of dirs){
+  s=".r"+d.join("_")
+  s=s+"{stroke:url(#r"+d+");}"
+  console.log(s)
+}
+s=""
+for(let d of dirs){
+  s+=".r"+d.join("_")+","
+  s+=".l"+d.join("_")+","
+}
+  console.log(s)
+
+}
+startGame(1)
+
+</script>
+</html>
